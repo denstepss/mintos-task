@@ -69,10 +69,22 @@ class SecurityController extends AbstractController
     /**
      * @Route("/auth", name="app_auth_ajax", methods={"POST"})
      */
-    public function authAjaxAction(Request $request, ValidatorInterface $validator)
+    public function authAjaxAction(Request $request)
     {
         if($this->getUser() instanceof User){
             return new JsonResponse(['status' => 'ok', 'redirectUrl'=>$this->generateUrl('homepage')]);
+        }
+        return new JsonResponse();
+    }
+
+    /**
+     * @Route("/check_email", name="app_check_email", methods={"POST"})
+     */
+    public function checkEmailOnFlyAction(Request $request)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $request->get('email')]);
+        if($user instanceof User){
+            return new JsonResponse(['email' => 'Account with this email already exist']);
         }
         return new JsonResponse();
     }
