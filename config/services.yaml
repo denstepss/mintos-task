@@ -25,3 +25,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    app.doctrine.user_password_listener:
+        class: App\Doctrine\UserPasswordListener
+        autowire: true
+        tags:
+            - { name: doctrine.event_subscriber }
