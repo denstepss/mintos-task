@@ -3,13 +3,14 @@
 {% block title %}Main Page{% endblock %}
 
 {% block body %}
-<div class="d-flex justify-content-center">
-    <b>Top 10 words from https://www.theregister.co.uk/software/headlines.atom, except 50 most popular words</b></div>
+    <div class="d-flex justify-content-center">
+        <b>Top 10 words from https://www.theregister.co.uk/software/headlines.atom, except 50 most popular words</b>
+    </div>
     <br>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="list-column bg-primary" >
+                <div class="list-column bg-primary">
                     <div class="row justify-content-center">
                         <div class="col-2 text-align-center">
                             <b>Place</b>
@@ -24,22 +25,43 @@
                 </div>
             </div>
             {% for fromTop in top10 %}
-            <div class="col-12" id="paginatedAddress">
-                <div class="list-column bg-light  align-content-center" >
-                    <div class="row justify-content-center">
-                        <div class="col-2 text-align-center">
-                            {{ loop.index }}
-                        </div>
-                        <div class="col-4 text-align-center">
-                            {{ fromTop.word }}
-                        </div>
-                        <div class="col-2 text-align-center">
-                            {{ fromTop.count }}
+                <div class="col-12" id="paginatedAddress">
+                    <div class="list-column bg-light  align-content-center">
+                        <div class="row justify-content-center">
+                            <div class="col-2 text-align-center">
+                                {{ loop.index }}
+                            </div>
+                            <div class="col-4 text-align-center">
+                                {{ fromTop.word }}
+                            </div>
+                            <div class="col-2 text-align-center">
+                                {{ fromTop.count }}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <b>Feed - {% if feed.title is defined %}{{ feed.title }}{% endif %}</b>
+    </div>
+    <br>
+    <div class="container">
+        {% if feed.entry is defined %}
+            {% for post in feed.entry %}
+                <div class="jumbotron">
+                    <h1 class="display-4"> {{ post.title|raw }}</h1>
+                    <p class="lead"> {{ post.summary|raw }}</p>
+                    <hr class="my-4">
+                    <p>Author: <a href="{{ post.author.uri }}" target="_blank">{{ post.author.name }}</a></p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="{{ post.link.attributes().href }}" role="button">Read
+                            more</a>
+                    </p>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

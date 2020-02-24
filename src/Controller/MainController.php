@@ -14,7 +14,7 @@ class MainController extends AbstractController
      */
     public function index(FeedService $feedService)
     {
-        return $this->render('main/index.html.twig', ['top10' => $feedService->getTop10()]);
+        return $this->render('main/index.html.twig', ['top10' => $feedService->getTop10(), 'feed' => $feedService->getFeed()]);
     }
 
 

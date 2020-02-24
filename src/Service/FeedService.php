@@ -49,6 +49,7 @@ class FeedService
 
     public function getFeed(){
 
+        return $this->parsedContent;
     }
 
 }
