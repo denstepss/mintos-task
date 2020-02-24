@@ -99,7 +99,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
             }
         }
 
-        return true;
+        return $result;
     }
 
     public function onAuthenticationFailure(Request $request, \Symfony\Component\Security\Core\Exception\AuthenticationException $exception)

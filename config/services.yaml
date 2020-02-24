@@ -31,3 +31,8 @@ services:
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
+
+    app.service.feed:
+        class: App\Service\FeedService
+        autowire: true
+        public: true

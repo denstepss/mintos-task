@@ -3,4 +3,43 @@
 {% block title %}Main Page{% endblock %}
 
 {% block body %}
+<div class="d-flex justify-content-center">
+    <b>Top 10 words from https://www.theregister.co.uk/software/headlines.atom, except 50 most popular words</b></div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="list-column bg-primary" >
+                    <div class="row justify-content-center">
+                        <div class="col-2 text-align-center">
+                            <b>Place</b>
+                        </div>
+                        <div class="col-4 text-align-center">
+                            <b>Word</b>
+                        </div>
+                        <div class="col-2 text-align-center">
+                            <b>Count</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for fromTop in top10 %}
+            <div class="col-12" id="paginatedAddress">
+                <div class="list-column bg-light  align-content-center" >
+                    <div class="row justify-content-center">
+                        <div class="col-2 text-align-center">
+                            {{ loop.index }}
+                        </div>
+                        <div class="col-4 text-align-center">
+                            {{ fromTop.word }}
+                        </div>
+                        <div class="col-2 text-align-center">
+                            {{ fromTop.count }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
