@@ -3,8 +3,9 @@
 {% block title %}Main Page{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_logout') }}" class="btn btn-primary ml-md-5 mt-md-1 active position-fixed" role="button" aria-pressed="true">Logout</a>
     <div class="d-flex justify-content-center">
-        <b>Top 10 words from https://www.theregister.co.uk/software/headlines.atom, except 50 most popular words</b>
+        <h4><b>Top 10 words from https://www.theregister.co.uk/software/headlines.atom, except 50 most popular words</b></h4>
     </div>
     <br>
     <div class="container">
@@ -45,7 +46,7 @@
     </div>
     <br>
     <div class="d-flex justify-content-center">
-        <b>Feed - {% if feed.title is defined %}{{ feed.title }}{% endif %}</b>
+        <h3><b>Feed - {% if feed.title is defined %}{{ feed.title }}{% endif %}</b></h3>
     </div>
     <br>
     <div class="container">
@@ -56,6 +57,7 @@
                     <p class="lead"> {{ post.summary|raw }}</p>
                     <hr class="my-4">
                     <p>Author: <a href="{{ post.author.uri }}" target="_blank">{{ post.author.name }}</a></p>
+                    <p>Date: {{ post.updated|date('d M Y H:i') }}</p>
                     <p class="lead">
                         <a class="btn btn-primary btn-lg" href="{{ post.link.attributes().href }}" role="button">Read
                             more</a>
